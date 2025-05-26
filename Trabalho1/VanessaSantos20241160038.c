@@ -11,10 +11,10 @@
 //  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
 
 //  ----- Dados do Aluno -----
-//  Nome:
-//  email:
-//  Matrícula:
-//  Semestre:
+//  Nome: Vanessa da conceição dos santos
+//  email: vanessacsantosdev@gmail.com
+//  Matrícula: 20241160038
+//  Semestre: 2
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 07/05/2021 - 19/08/2016
@@ -22,7 +22,7 @@
 // #################################################
 
 #include <stdio.h>
-#include "PrimeiroUltimoNomeMATRICULA.h" // Substitua pelo seu arquivo de header renomeado
+#include "VanessaSantos20241160038.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
 
 DataQuebrada quebraData(char data[]);
