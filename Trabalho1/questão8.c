@@ -4,8 +4,8 @@
 #include <string.h> 
 #include <ctype.h>  
 
-#define TAMANHO_TABULEIRO 10 // Tabuleiro 10x10 (Requisito c)
-#define NUM_NAVIOS_PADRAO 5  // Número mínimo de barcos (Requisito b)
+#define TAMANHO_TABULEIRO 10 
+#define NUM_NAVIOS_PADRAO 5  
 
 
 typedef struct {
