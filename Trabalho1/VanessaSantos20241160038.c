@@ -21,6 +21,7 @@
 
 // #################################################
 
+#include <string.h>
 #include <stdio.h>
 #include "VanessaSantos20241160038.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
