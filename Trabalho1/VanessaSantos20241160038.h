@@ -19,8 +19,8 @@
 // Última atualização: 19/08/2016 - 12/12/2018
 
 // #################################################
-#ifndef VanessaSantos202411600_H
-#define VanessaSantos202411600_H
+#ifndef VanessaSantos20241160038_H
+#define VanessaSantos20241160038_H
 
 typedef struct DQ
 {
