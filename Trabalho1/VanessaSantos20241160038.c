@@ -21,12 +21,52 @@
 
 // #################################################
 
-#include <string.h>
 #include <stdio.h>
-#include "VanessaSantos20241160038.h" // Substitua pelo seu arquivo de header renomeado
+#include "DanielLima20242160018.h" 
 #include <stdlib.h>
+#include <string.h>
 
-DataQuebrada quebraData(char data[]);
+DataQuebrada quebraData(char data[]) {
+    DataQuebrada dq;
+    char sDia[3], sMes[3], sAno[5];
+    int i, j;
+
+    for (i = 0; data[i] != '/'; i++) {
+        sDia[i] = data[i];
+    }
+    sDia[i] = '\0'; 
+    if (i != 1 && i != 2) {
+        dq.valido = 0;
+        return dq;
+    }
+
+    j = i + 1;
+    for (i = 0; data[j] != '/'; j++, i++) {
+        sMes[i] = data[j];
+    }
+    sMes[i] = '\0';
+    if (i != 1 && i != 2) {
+        dq.valido = 0;
+        return dq; 
+    }
+
+    j = j + 1;
+    for (i = 0; data[j] != '\0'; j++, i++) {
+        sAno[i] = data[j];
+    }
+    sAno[i] = '\0'; 
+    if (i != 2 && i != 4) {
+        dq.valido = 0;
+        return dq; 
+    }
+
+    dq.iDia = atoi(sDia);
+    dq.iMes = atoi(sMes);
+    dq.iAno = atoi(sAno);
+    dq.valido = 1;
+
+    return dq;
+}
 
 /*
 ## função utilizada para testes  ##
@@ -93,51 +133,55 @@ int teste(int a)
  */
 int q1(char data[])
 {
-    int datavalida = 0;
-DataQuebrada dq = quebraData(data);
-if (dq.valido == 0){
-    return 0;}
-else{
-    if (dq.iDia < 1 || dq.iDia > 31){
-        return 0;}
-    }
-if (dq.iMes > 12 || dq.iMes < 1){
-        return 0;}
-    
+    DataQuebrada dq = quebraData(data);
 
+    if (dq.valido == 0)
+        return 0;
 
-if((dq.iAno % 4 == 0 && dq.iAno % 100 != 0) || dq.iAno % 400 == 0 ){
-        if (dq.iDia > 29){
-            return 0;
-        }
+    int dia = dq.iDia;
+    int mes = dq.iMes;
+    int ano = dq.iAno;
+
+    if (ano < 100)
+    {
+        if (ano >= 0 && ano <= 49)
+            ano += 2000;
+        else
+            ano += 1900;
     }
-    else{
-        if(dq.iMes == 2 && dq.iDia > 28){
-            return 0;
-        }
-    }
-if (dq.iMes == 1 || dq.iMes == 3 || dq.iMes == 5 || dq.iMes == 7 || dq.iMes == 8 || dq.iMes == 10 || dq.iMes == 12){
-    if (dq.iDia > 31){
+
+    if (mes < 1 || mes > 12)
+        return 0;
+
+    if (dia < 1)
+        return 0;
+
+    int diasMes;
+
+    switch (mes)
+    {
+    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        diasMes = 31;
+        break;
+    case 4: case 6: case 9: case 11:
+        diasMes = 30;
+        break;
+    case 2:
+        if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0))
+            diasMes = 29;
+        else
+            diasMes = 28;
+        break;
+    default:
         return 0;
     }
-}
-if(dq.iMes == 4 || dq.iMes == 6 || dq.iMes == 9 || dq.iMes == 11 ){
-    
-    if (dq.iDia > 30){
+
+    if (dia > diasMes)
         return 0;
-    }
+
+    return 1;
 }
 
-datavalida = 1;
-  
-  //quebrar a string data em strings sDia, sMes, sAno
-  //printf("%s\n", data);
-
-  if (datavalida)
-      return 1;
-  else
-      return 0;
-}
 
 /*
  Q2 = diferença entre duas datas
@@ -278,6 +322,7 @@ int q3(char *texto, char c, int isCaseSensitive)
     return qtdOcorrencias;
 }
 
+
 /*
  Q4 = encontrar palavra em texto
  @objetivo
@@ -293,7 +338,7 @@ int q3(char *texto, char c, int isCaseSensitive)
         O retorno da função, n, nesse caso seria 1;
 
  */
-void noSpecials(char *text){
+ void noSpecials(char *text){
   int i, j=0;
 
   const char *comAcentos[] = {"Ä", "Å", "Á", "Â", "À", "Ã", "ä", "á", "â", "à", "ã",
@@ -420,7 +465,6 @@ int q6(int numerobase, int numerobusca) {
 
     return qtdOcorrencias;
 }
-
 /*
  Q7 = jogo busca palavras
  @objetivo
@@ -431,7 +475,7 @@ int q6(int numerobase, int numerobusca) {
     1 se achou 0 se não achou
  */
 
- int q7(char matriz[8][10], char palavra[5]) {
+int q7(char matriz[8][10], char palavra[5]) {
     int linhas = 8, colunas = 10;
     int tamPalavra = strlen(palavra);
     
